@@ -1,0 +1,45 @@
+<.header>
+  Listing Patrons
+  <:actions>
+    <.link patch={~p"/patrons/new"}>
+      <.button>New Patron</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.table
+  id="patrons"
+  rows={@streams.patrons}
+  row_click={fn {_id, patron} -> JS.navigate(~p"/patrons/#{patron}") end}
+>
+  <:col :let={{_id, patron}} label="First name"><%= patron.first_name %></:col>
+  <:col :let={{_id, patron}} label="Last name"><%= patron.last_name %></:col>
+  <:col :let={{_id, patron}} label="Date of birth"><%= patron.date_of_birth %></:col>
+  <:col :let={{_id, patron}} label="Email address"><%= patron.email_address %></:col>
+  <:col :let={{_id, patron}} label="Late fees balance"><%= patron.late_fees_balance %></:col>
+  <:action :let={{_id, patron}}>
+    <div class="sr-only">
+      <.link navigate={~p"/patrons/#{patron}"}>Show</.link>
+    </div>
+    <.link patch={~p"/patrons/#{patron}/edit"}>Edit</.link>
+  </:action>
+  <:action :let={{id, patron}}>
+    <.link
+      phx-click={JS.push("delete", value: %{id: patron.id}) |> hide("##{id}")}
+      data-confirm="Are you sure?"
+    >
+      Delete
+    </.link>
+  </:action>
+</.table>
+
+<.modal :if={@live_action in [:new, :edit]} id="patron-modal" show on_cancel={JS.patch(~p"/patrons")}>
+  <.live_component
+    module={LibraryWeb.PatronLive.FormComponent}
+    id={@patron.id || :new}
+    title={@page_title}
+    action={@live_action}
+    patron={@patron}
+    patch={~p"/patrons"}
+  />
+</.modal>

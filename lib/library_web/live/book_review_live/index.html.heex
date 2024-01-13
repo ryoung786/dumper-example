@@ -1,0 +1,44 @@
+<.header>
+  Listing Book reviews
+  <:actions>
+    <.link patch={~p"/book_reviews/new"}>
+      <.button>New Book review</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.table
+  id="book_reviews"
+  rows={@streams.book_reviews}
+  row_click={fn {_id, book_review} -> JS.navigate(~p"/book_reviews/#{book_review}") end}
+>
+  <:col :let={{_id, book_review}} label="Patron"><%= book_review.patron_id %></:col>
+  <:col :let={{_id, book_review}} label="Book"><%= book_review.book_id %></:col>
+  <:col :let={{_id, book_review}} label="Rating"><%= book_review.rating %></:col>
+  <:col :let={{_id, book_review}} label="Review text"><%= book_review.review_text %></:col>
+  <:action :let={{_id, book_review}}>
+    <div class="sr-only">
+      <.link navigate={~p"/book_reviews/#{book_review}"}>Show</.link>
+    </div>
+    <.link patch={~p"/book_reviews/#{book_review}/edit"}>Edit</.link>
+  </:action>
+  <:action :let={{id, book_review}}>
+    <.link
+      phx-click={JS.push("delete", value: %{id: book_review.id}) |> hide("##{id}")}
+      data-confirm="Are you sure?"
+    >
+      Delete
+    </.link>
+  </:action>
+</.table>
+
+<.modal :if={@live_action in [:new, :edit]} id="book_review-modal" show on_cancel={JS.patch(~p"/book_reviews")}>
+  <.live_component
+    module={LibraryWeb.BookReviewLive.FormComponent}
+    id={@book_review.id || :new}
+    title={@page_title}
+    action={@live_action}
+    book_review={@book_review}
+    patch={~p"/book_reviews"}
+  />
+</.modal>

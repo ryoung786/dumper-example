@@ -1,0 +1,30 @@
+<.header>
+  Patron <%= @patron.id %>
+  <:subtitle>This is a patron record from your database.</:subtitle>
+  <:actions>
+    <.link patch={~p"/patrons/#{@patron}/show/edit"} phx-click={JS.push_focus()}>
+      <.button>Edit patron</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.list>
+  <:item title="First name"><%= @patron.first_name %></:item>
+  <:item title="Last name"><%= @patron.last_name %></:item>
+  <:item title="Date of birth"><%= @patron.date_of_birth %></:item>
+  <:item title="Email address"><%= @patron.email_address %></:item>
+  <:item title="Late fees balance"><%= @patron.late_fees_balance %></:item>
+</.list>
+
+<.back navigate={~p"/patrons"}>Back to patrons</.back>
+
+<.modal :if={@live_action == :edit} id="patron-modal" show on_cancel={JS.patch(~p"/patrons/#{@patron}")}>
+  <.live_component
+    module={LibraryWeb.PatronLive.FormComponent}
+    id={@patron.id}
+    title={@page_title}
+    action={@live_action}
+    patron={@patron}
+    patch={~p"/patrons/#{@patron}"}
+  />
+</.modal>
