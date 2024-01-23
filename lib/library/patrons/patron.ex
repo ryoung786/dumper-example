@@ -9,7 +9,7 @@ defmodule Library.Patrons.Patron do
     field :first_name, :string
     field :last_name, :string
     field :date_of_birth, :date
-    field :email_address, :string
+    field :email_address, :string, redact: true
     field :late_fees_balance, :integer
 
     has_many :loans, Loan
@@ -22,6 +22,12 @@ defmodule Library.Patrons.Patron do
   def changeset(patron, attrs) do
     patron
     |> cast(attrs, [:first_name, :last_name, :date_of_birth, :email_address, :late_fees_balance])
-    |> validate_required([:first_name, :last_name, :date_of_birth, :email_address, :late_fees_balance])
+    |> validate_required([
+      :first_name,
+      :last_name,
+      :date_of_birth,
+      :email_address,
+      :late_fees_balance
+    ])
   end
 end
