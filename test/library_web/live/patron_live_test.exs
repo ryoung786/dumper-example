@@ -4,9 +4,27 @@ defmodule LibraryWeb.PatronLiveTest do
   import Phoenix.LiveViewTest
   import Library.PatronsFixtures
 
-  @create_attrs %{first_name: "some first_name", last_name: "some last_name", date_of_birth: "2024-01-12", email_address: "some email_address", late_fees_balance: 42}
-  @update_attrs %{first_name: "some updated first_name", last_name: "some updated last_name", date_of_birth: "2024-01-13", email_address: "some updated email_address", late_fees_balance: 43}
-  @invalid_attrs %{first_name: nil, last_name: nil, date_of_birth: nil, email_address: nil, late_fees_balance: nil}
+  @create_attrs %{
+    first_name: "some first_name",
+    last_name: "some last_name",
+    date_of_birth: "2024-01-12",
+    email_address: "some email_address",
+    late_fees_balance: 42
+  }
+  @update_attrs %{
+    first_name: "some updated first_name",
+    last_name: "some updated last_name",
+    date_of_birth: "2024-01-13",
+    email_address: "some updated email_address",
+    late_fees_balance: 43
+  }
+  @invalid_attrs %{
+    first_name: nil,
+    last_name: nil,
+    date_of_birth: nil,
+    email_address: nil,
+    late_fees_balance: nil
+  }
 
   defp create_patron(_) do
     patron = patron_fixture()

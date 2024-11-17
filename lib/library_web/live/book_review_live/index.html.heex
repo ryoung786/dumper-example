@@ -32,7 +32,12 @@
   </:action>
 </.table>
 
-<.modal :if={@live_action in [:new, :edit]} id="book_review-modal" show on_cancel={JS.patch(~p"/book_reviews")}>
+<.modal
+  :if={@live_action in [:new, :edit]}
+  id="book_review-modal"
+  show
+  on_cancel={JS.patch(~p"/book_reviews")}
+>
   <.live_component
     module={LibraryWeb.BookReviewLive.FormComponent}
     id={@book_review.id || :new}

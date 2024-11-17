@@ -18,7 +18,12 @@
 
 <.back navigate={~p"/patrons"}>Back to patrons</.back>
 
-<.modal :if={@live_action == :edit} id="patron-modal" show on_cancel={JS.patch(~p"/patrons/#{@patron}")}>
+<.modal
+  :if={@live_action == :edit}
+  id="patron-modal"
+  show
+  on_cancel={JS.patch(~p"/patrons/#{@patron}")}
+>
   <.live_component
     module={LibraryWeb.PatronLive.FormComponent}
     id={@patron.id}

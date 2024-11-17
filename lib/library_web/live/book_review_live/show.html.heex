@@ -17,7 +17,12 @@
 
 <.back navigate={~p"/book_reviews"}>Back to book_reviews</.back>
 
-<.modal :if={@live_action == :edit} id="book_review-modal" show on_cancel={JS.patch(~p"/book_reviews/#{@book_review}")}>
+<.modal
+  :if={@live_action == :edit}
+  id="book_review-modal"
+  show
+  on_cancel={JS.patch(~p"/book_reviews/#{@book_review}")}
+>
   <.live_component
     module={LibraryWeb.BookReviewLive.FormComponent}
     id={@book_review.id}

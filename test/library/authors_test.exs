@@ -21,7 +21,11 @@ defmodule Library.AuthorsTest do
     end
 
     test "create_author/1 with valid data creates a author" do
-      valid_attrs = %{first_name: "some first_name", last_name: "some last_name", date_of_birth: ~D[2024-01-12]}
+      valid_attrs = %{
+        first_name: "some first_name",
+        last_name: "some last_name",
+        date_of_birth: ~D[2024-01-12]
+      }
 
       assert {:ok, %Author{} = author} = Authors.create_author(valid_attrs)
       assert author.first_name == "some first_name"
@@ -35,7 +39,12 @@ defmodule Library.AuthorsTest do
 
     test "update_author/2 with valid data updates the author" do
       author = author_fixture()
-      update_attrs = %{first_name: "some updated first_name", last_name: "some updated last_name", date_of_birth: ~D[2024-01-13]}
+
+      update_attrs = %{
+        first_name: "some updated first_name",
+        last_name: "some updated last_name",
+        date_of_birth: ~D[2024-01-13]
+      }
 
       assert {:ok, %Author{} = author} = Authors.update_author(author, update_attrs)
       assert author.first_name == "some updated first_name"

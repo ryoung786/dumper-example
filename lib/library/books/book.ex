@@ -1,4 +1,11 @@
 defmodule Library.Books.Book do
+  @moduledoc """
+  Representation of a Book for demo purposes.
+
+  Markdown is rendered in earmark.
+    * ~strike text~
+    * **bold text**
+  """
   use Ecto.Schema
   import Ecto.Changeset
 

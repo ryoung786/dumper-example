@@ -8,7 +8,13 @@ defmodule Library.PatronsTest do
 
     import Library.PatronsFixtures
 
-    @invalid_attrs %{first_name: nil, last_name: nil, date_of_birth: nil, email_address: nil, late_fees_balance: nil}
+    @invalid_attrs %{
+      first_name: nil,
+      last_name: nil,
+      date_of_birth: nil,
+      email_address: nil,
+      late_fees_balance: nil
+    }
 
     test "list_patrons/0 returns all patrons" do
       patron = patron_fixture()
@@ -21,7 +27,13 @@ defmodule Library.PatronsTest do
     end
 
     test "create_patron/1 with valid data creates a patron" do
-      valid_attrs = %{first_name: "some first_name", last_name: "some last_name", date_of_birth: ~D[2024-01-12], email_address: "some email_address", late_fees_balance: 42}
+      valid_attrs = %{
+        first_name: "some first_name",
+        last_name: "some last_name",
+        date_of_birth: ~D[2024-01-12],
+        email_address: "some email_address",
+        late_fees_balance: 42
+      }
 
       assert {:ok, %Patron{} = patron} = Patrons.create_patron(valid_attrs)
       assert patron.first_name == "some first_name"
@@ -37,7 +49,14 @@ defmodule Library.PatronsTest do
 
     test "update_patron/2 with valid data updates the patron" do
       patron = patron_fixture()
-      update_attrs = %{first_name: "some updated first_name", last_name: "some updated last_name", date_of_birth: ~D[2024-01-13], email_address: "some updated email_address", late_fees_balance: 43}
+
+      update_attrs = %{
+        first_name: "some updated first_name",
+        last_name: "some updated last_name",
+        date_of_birth: ~D[2024-01-13],
+        email_address: "some updated email_address",
+        late_fees_balance: 43
+      }
 
       assert {:ok, %Patron{} = patron} = Patrons.update_patron(patron, update_attrs)
       assert patron.first_name == "some updated first_name"

@@ -4,8 +4,16 @@ defmodule LibraryWeb.AuthorLiveTest do
   import Phoenix.LiveViewTest
   import Library.AuthorsFixtures
 
-  @create_attrs %{first_name: "some first_name", last_name: "some last_name", date_of_birth: "2024-01-12"}
-  @update_attrs %{first_name: "some updated first_name", last_name: "some updated last_name", date_of_birth: "2024-01-13"}
+  @create_attrs %{
+    first_name: "some first_name",
+    last_name: "some last_name",
+    date_of_birth: "2024-01-12"
+  }
+  @update_attrs %{
+    first_name: "some updated first_name",
+    last_name: "some updated last_name",
+    date_of_birth: "2024-01-13"
+  }
   @invalid_attrs %{first_name: nil, last_name: nil, date_of_birth: nil}
 
   defp create_author(_) do

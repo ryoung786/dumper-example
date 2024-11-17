@@ -72,7 +72,10 @@ defmodule LibraryWeb.BookReviewLiveTest do
     test "deletes book_review in listing", %{conn: conn, book_review: book_review} do
       {:ok, index_live, _html} = live(conn, ~p"/book_reviews")
 
-      assert index_live |> element("#book_reviews-#{book_review.id} a", "Delete") |> render_click()
+      assert index_live
+             |> element("#book_reviews-#{book_review.id} a", "Delete")
+             |> render_click()
+
       refute has_element?(index_live, "#book_reviews-#{book_review.id}")
     end
   end

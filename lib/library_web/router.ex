@@ -39,14 +39,14 @@ defmodule LibraryWeb.Router do
 
     live "/patrons/:id", PatronLive.Show, :show
     live "/patrons/:id/show/edit", PatronLive.Show, :edit
-    
+
     live "/loans", LoanLive.Index, :index
     live "/loans/new", LoanLive.Index, :new
     live "/loans/:id/edit", LoanLive.Index, :edit
 
     live "/loans/:id", LoanLive.Show, :show
     live "/loans/:id/show/edit", LoanLive.Show, :edit
-    
+
     live "/book_reviews", BookReviewLive.Index, :index
     live "/book_reviews/new", BookReviewLive.Index, :new
     live "/book_reviews/:id/edit", BookReviewLive.Index, :edit
