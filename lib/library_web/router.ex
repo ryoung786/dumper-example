@@ -1,5 +1,6 @@
 defmodule LibraryWeb.Router do
   use LibraryWeb, :router
+  import Phoenix.LiveDashboard.Router
 
   pipeline :browser do
     plug :accepts, ["html"]
@@ -53,6 +54,14 @@ defmodule LibraryWeb.Router do
 
     live "/book_reviews/:id", BookReviewLive.Show, :show
     live "/book_reviews/:id/show/edit", BookReviewLive.Show, :edit
+
+    live_dashboard "/dashboard",
+      additional_pages: [
+        dumper: {
+          Dumper.LiveDashboardPage,
+          repo: Library.Repo, config_module: LibraryWeb.DumperConfig
+        }
+      ]
   end
 
   # Other scopes may use custom stacks.
