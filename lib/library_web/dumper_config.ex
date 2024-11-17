@@ -1,14 +1,14 @@
 defmodule LibraryWeb.DumperConfig do
   @moduledoc """
-  The library user defines this module themselves - it's not part of the dumper library.
-
-  They set it in the :dumper config
+  Customize the Dumper.
   """
 
   use Dumper.Config
 
   @impl Dumper.Config
   def ids_to_schema() do
+    # everywhere we render a field named "patron_id" etc, the id will be transformed
+    # into a clickable link to view that specific record
     %{
       patron_id: Library.Patrons.Patron,
       book_id: Library.Books.Book,
@@ -18,6 +18,7 @@ defmodule LibraryWeb.DumperConfig do
 
   @impl Dumper.Config
   def display(%{field: :last_name} = assigns) do
+    # Make all "last_name"s red
     ~H"""
     <span style="color: red"><%= @value %></span>
     """
@@ -25,6 +26,7 @@ defmodule LibraryWeb.DumperConfig do
 
   @impl Dumper.Config
   def custom_record_links(%Library.Books.Book{} = book) do
+    # When rendering a Book, display a link to Goodreads and a link to the logs
     [{"https://goodreads.com/search?q=#{book.title}", "Goodreads"}, {"#", "Logs"}]
   end
 end
