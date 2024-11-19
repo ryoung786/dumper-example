@@ -48,7 +48,7 @@ defmodule Library.MixProject do
       {:jason, "~> 1.2"},
       {:plug_cowboy, "~> 2.5"},
       {:faker, "~> 0.17", only: [:dev, :test]},
-      {:dumper, "~> 0.2.2"}
+      {:dumper, "~> 0.2.6"}
     ]
   end
 
